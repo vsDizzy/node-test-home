@@ -5,9 +5,10 @@ import { isUUID, isDate, isNotEmpty } from 'class-validator'
 export interface Comment extends Document {
   parentId: Types.ObjectId
   replyTo: Types.ObjectId
-  body: string,
-  threadId: string,
+  body: string
+  threadId: string
   createdAt: Date
+  status: string
 }
 
 export type CommentData = Pick<
@@ -30,7 +31,14 @@ export const CommentSchema = new Schema<Comment>({
     default: Date.now,
     validate: isDate
   },
-  body: { type: String, required: true, validate: isNotEmpty }
+  body: { type: String, required: true, validate: isNotEmpty },
+  parentId: { type: Types.ObjectId, ref: 'comment' },
+  replyTo: { type: Types.ObjectId, ref: 'comment' },
+  status: {
+    type: String,
+    enum: ['pending', 'approved', 'declined'],
+    default: 'pending'
+  }
 })
 
 CommentSchema.set('collection', 'comment')

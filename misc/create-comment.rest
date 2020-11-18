@@ -1,0 +1,44 @@
+### Root
+POST http://localhost:8080/comments
+Content-Type: application/json
+
+{
+    "_id": "000000000000000000000001",
+    "body": "He looks more like The Crow then Batman when he is out of costume lol",
+    "threadId": "acd88360-e772-11ea-bc06-6ba89fdab63e",
+    "createdAt": "2020-11-18T10:00Z"
+}
+
+### Relpy
+POST http://localhost:8080/comments
+Content-Type: application/json
+
+{
+    "_id":"000000000000000000000002",
+    "body": "I freaking loved it. Mad Batfleck vibes.",
+    "parentId": "000000000000000000000001",
+    "replyTo": "000000000000000000000001",
+    "threadId": "acd88360-e772-11ea-bc06-6ba89fdab63e",
+    "createdAt": "2020-11-18T10:01Z"
+}
+
+### Nested reply
+POST http://localhost:8080/comments
+Content-Type: application/json
+
+{
+    "_id":"000000000000000000000003",
+    "body": "You're God damn right",
+    "parentId": "000000000000000000000001",
+    "replyTo": "000000000000000000000002",
+    "threadId": "acd88360-e772-11ea-bc06-6ba89fdab63e",
+    "createdAt": "2020-11-18T10:02Z"
+}
+
+### Get all comments
+GET http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e
+Content-Type: application/json
+
+### Get specific comment
+GET http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e/000000000000000000000003
+Content-Type: application/json
