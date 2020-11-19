@@ -1,16 +1,14 @@
 import {
+  Body,
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
-  Post,
-  Body,
-  Get,
-  Param
+  Param,
+  Post
 } from '@nestjs/common'
-import { CommentsRepository } from './comments.repository'
 import { Comment } from 'src/schemas/comment.schema'
-import { threadId } from 'worker_threads'
-import { Types } from 'mongoose'
+import { CommentsRepository } from './comments.repository'
 
 @Controller('comments')
 export class CommentsController {
@@ -23,14 +21,14 @@ export class CommentsController {
   }
 
   @Get('/:threadId/:id')
-  async getComment(
-    @Param() { threadId, id }: { threadId: string; id: string }
-  ) {
-    return this.commentsRepository.get(threadId, id)
+  async getComment(@Param() { id }: { id: string }): Promise<unknown> {
+    return this.commentsRepository.get(id)
   }
 
   @Get('/:threadId')
-  async getAllComments(@Param() { threadId }: { threadId: string }) {
-    return this.commentsRepository.getAll(threadId)
+  async getRootComments(
+    @Param() { threadId }: { threadId: string }
+  ): Promise<unknown[]> {
+    return this.commentsRepository.getRoot(threadId)
   }
 }

@@ -1,6 +1,6 @@
-import { v1 as uuidv1 } from 'uuid'
+import { isDate, isNotEmpty, isUUID } from 'class-validator'
 import { Document, Schema, Types } from 'mongoose'
-import { isUUID, isDate, isNotEmpty } from 'class-validator'
+import { v1 as uuidv1 } from 'uuid'
 
 export interface Comment extends Document {
   parentId: Types.ObjectId
@@ -29,11 +29,12 @@ export const CommentSchema = new Schema<Comment>({
     required: true,
     immutable: true,
     default: Date.now,
-    validate: isDate
+    validate: isDate,
+    index: true
   },
   body: { type: String, required: true, validate: isNotEmpty },
-  parentId: { type: Types.ObjectId, ref: 'comment' },
-  replyTo: { type: Types.ObjectId, ref: 'comment' },
+  parentId: { type: Types.ObjectId, ref: 'comment', index: true },
+  replyTo: { type: Types.ObjectId, ref: 'comment', index: true },
   status: {
     type: String,
     enum: ['pending', 'approved', 'declined'],
