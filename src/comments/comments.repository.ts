@@ -16,7 +16,7 @@ export class CommentsRepository {
     { skip, limit }: { skip?: number; limit?: number }
   ): Promise<unknown> {
     const comments = (await this.commentModel
-      .find({ threadId, replyTo: null })
+      .find({ threadId, replyTo: null, status: { $ne: 'declined' } })
       .sort({ createdAt: 'desc' })
       .skip(skip)
       .limit(limit)
@@ -46,7 +46,7 @@ export class CommentsRepository {
 
   private async getCommentReplies(commentId: Types.ObjectId) {
     const replies = (await this.commentModel
-      .find({ replyTo: commentId })
+      .find({ replyTo: commentId, status: { $ne: 'declined' } })
       .sort({ createdAt: 'desc' })
       .lean()) as any[]
     await this.loadRepliesForMultipleComments(replies)

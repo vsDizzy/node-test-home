@@ -1,4 +1,4 @@
-### Set comment status approved
+### Set comment 1 status approved
 PATCH http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e/000000000000000000000001
 Content-Type: application/json
 
@@ -6,8 +6,24 @@ Content-Type: application/json
     "status": "approved"
 }
 
-### Set comment status declined
+### Set comment 1 status declined
 PATCH http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e/000000000000000000000001
+Content-Type: application/json
+
+{
+    "status": "declined"
+}
+
+### Set comment 2 status approved
+PATCH http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e/000000000000000000000002
+Content-Type: application/json
+
+{
+    "status": "approved"
+}
+
+### Set comment 2 status declined
+PATCH http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e/000000000000000000000002
 Content-Type: application/json
 
 {

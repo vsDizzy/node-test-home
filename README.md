@@ -15,6 +15,9 @@
 
 - Nest and the project structure is okay. And because it is very small I don't really see the need to change anything right now.
 - `@Type(() => Number)` workaround took me a while, looks like [number transforms are still not fixed](https://github.com/typestack/class-transformer/issues/179).
+- Cannot really separate business and database logic e.g. with `declined`
+- The solution should scale well with mongo replicas because we're sending ton of db requests.
+- Also caching could be introduced. E.g. it should be possible to save entire thread tree snapshot at the specific date and then only patch it with the new data.
 
 # Security considerations
 
@@ -27,9 +30,11 @@
 1. [x] Build an API to get specific comment and all nested replies
 1. [x] Each comment should have moderation status. Default value for new comments - pending (available statuses: pending, approved, declined)
 1. [x] Build an API to update moderation status of a comment
-1. [ ] Build an API to retrieve comments per specific thread.
+1. [x] Build an API to retrieve comments per specific thread.
    1. [x] Endpoint should contain skip & limit parameters.
    1. [x] Endpoint should return specified limit of root comments and all nested replies to each of root comment.
    1. [x] Root comments and replies should be sorted. For more datails about sort see the section - Comments sort explanation.
    1. [x] Comments with declined status should not be returned from this API.
-   1. [ ] Replies that are left to comments with declined status should not be returned.
+   1. [x] Replies that are left to comments with declined status should not be returned.
+1. [ ] Add some tests
+1. [ ] Fix the infinite loop, xD
