@@ -11,10 +11,15 @@ export class CommentsRepository {
     return new this.commentModel(comment).save()
   }
 
-  async getRoot(threadId: string): Promise<unknown[]> {
+  async getRoot(
+    threadId: string,
+    { skip, limit }: { skip?: number; limit?: number }
+  ): Promise<unknown> {
     const comments = (await this.commentModel
       .find({ threadId, replyTo: null })
       .sort({ createdAt: 'desc' })
+      .skip(skip)
+      .limit(limit)
       .lean()) as any[]
     await this.loadRepliesForMultipleComments(comments)
     return comments
@@ -46,5 +51,11 @@ export class CommentsRepository {
       .lean()) as any[]
     await this.loadRepliesForMultipleComments(replies)
     return replies as any
+  }
+
+  async update(id: string, data: Partial<Comment>): Promise<unknown> {
+    return await this.commentModel
+      .findByIdAndUpdate(id, data, { new: true })
+      .lean()
   }
 }

@@ -48,10 +48,35 @@ Content-Type: application/json
     "createdAt": "2020-11-18T10:02Z"
 }
 
-### Get all comments
-GET http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e
+### Root comment 1
+POST http://localhost:8080/comments
 Content-Type: application/json
 
-### Get specific comment
-GET http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e/000000000000000000000001
+{
+    "_id": "00000000000000000000000a",
+    "body": "Comment 1",
+    "threadId": "acd88360-e772-11ea-bc06-6ba89fdab63e",
+    "createdAt": "2020-11-18T11:00Z"
+}
+
+### Root comment 2
+POST http://localhost:8080/comments
 Content-Type: application/json
+
+{
+    "_id": "00000000000000000000000b",
+    "body": "Comment 2",
+    "threadId": "acd88360-e772-11ea-bc06-6ba89fdab63e",
+    "createdAt": "2020-11-18T11:01Z"
+}
+
+### Root comment 3
+POST http://localhost:8080/comments
+Content-Type: application/json
+
+{
+    "_id": "00000000000000000000000c",
+    "body": "Comment 3",
+    "threadId": "acd88360-e772-11ea-bc06-6ba89fdab63e",
+    "createdAt": "2020-11-18T11:02Z"
+}

@@ -1,0 +1,7 @@
+### Get all comments
+GET http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e?skip=2&limit=
+Content-Type: application/json
+
+### Get specific comment
+GET http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e/000000000000000000000001
+Content-Type: application/json

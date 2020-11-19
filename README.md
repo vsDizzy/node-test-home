@@ -1,8 +1,16 @@
-## TODO
+# Setup
 
-- [x] Build an API to get specific comment and all nested replies
-- [ ] okok
-- [ ] ijij
+- Install packages with `npm i`
+- Create `.env` file with `PORT` and `MONGO_SERVER` values corresponding to your environment.
+- Start sever with `npm start`
+
+# TODO
+
+1. [x] Build an API to get specific comment and all nested replies
+1. [x] Each comment should have moderation status. Default value for new comments - pending (available statuses: pending, approved, declined)
+1. [x] Build an API to update moderation status of a comment
+1. [ ] Build an API to retrieve comments per specific thread.\
+   1. [ ] Endpoint should contain skip & limit parameters.
 
 # Found some inconsistencies
 
@@ -11,6 +19,10 @@
 
 1. `_id` or `id` field name. Such contracts should be strictly defined across the entire project.
 
-1. ThreadId is UUID, but CommentId is ObjectId. ObjectId field is incremental in time, but relying on that looks like a hack. I'd suggest to use UUIDs everywhere.
+1. ThreadId is UUID, but CommentId is ObjectId. I'd suggest to use UUIDs everywhere.
 
-1.
+# Notes and thoughts
+
+- Nest and the project structure is okay. And because it is very small I don't really see the need to change anything right now.
+
+- `@Type(() => Number)` workaround took me a while, looks like [number transforms are still not fixed](https://github.com/typestack/class-transformer/issues/179).

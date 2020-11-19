@@ -1,0 +1,15 @@
+### Set comment status approved
+PATCH http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e/000000000000000000000001
+Content-Type: application/json
+
+{
+    "status": "approved"
+}
+
+### Set comment status declined
+PATCH http://localhost:8080/comments/acd88360-e772-11ea-bc06-6ba89fdab63e/000000000000000000000001
+Content-Type: application/json
+
+{
+    "status": "declined"
+}
