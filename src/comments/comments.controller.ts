@@ -9,7 +9,7 @@ import {
   Post,
   Query
 } from '@nestjs/common'
-import { Comment } from 'src/schemas/comment.schema'
+import { Comment } from '../schemas/comment.schema'
 import { CommentsRepository } from './comments.repository'
 import { ModerationDTO } from './moderation'
 import { PaginationDTO } from './pagination'

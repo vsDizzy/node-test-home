@@ -1,8 +1,14 @@
+# NodeJS Take home test task
+
 # Setup
 
 - Install packages with `npm i`
 - Create `.env` file with `PORT` and `MONGO_SERVER` values corresponding to your environment.
 - Start sever with `npm start`
+
+# Test
+
+`npm test`
 
 # Found some inconsistencies
 
@@ -23,7 +29,6 @@
 
 - [x] Moderator can only update `status` field to `approved` or `declined`
 - [x] Skip & limit query parameters are constrained to `int`
-- [ ] Currently it is possible to create a circular reply, will bring server and mongo on knees via infinite loop, xD. Could be easily fixed later.
 
 # TODO
 
@@ -36,5 +41,4 @@
    1. [x] Root comments and replies should be sorted. For more datails about sort see the section - Comments sort explanation.
    1. [x] Comments with declined status should not be returned from this API.
    1. [x] Replies that are left to comments with declined status should not be returned.
-1. [ ] Add some tests
-1. [ ] Fix the infinite loop, xD
+1. [x] Add some tests
