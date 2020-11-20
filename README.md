@@ -10,6 +10,49 @@
 
 `npm test`
 
+# API
+
+## Create new Comment
+
+```js
+POST comments
+Content-Type: application/json
+
+{
+    "_id":"000000000000000000000004",
+    "body": "Last reply to the first comment.",
+    "parentId": "000000000000000000000001",
+    "replyTo": "000000000000000000000001",
+    "threadId": "acd88360-e772-11ea-bc06-6ba89fdab63e",
+    "createdAt": "2020-11-18T10:11Z"
+}
+```
+
+## Get thread
+
+```js
+GET comments/{threadId}?skip=&limit=
+Content-Type: application/json
+```
+
+## Get comment
+
+```js
+GET comments/{threadId}/{commentId}
+Content-Type: application/json
+```
+
+## Set moderation status
+
+```js
+PATCH comments/{threadId}/{commentId}
+Content-Type: application/json
+
+{
+"status": "declined" | "approved"
+}
+```
+
 # Found some inconsistencies
 
 1. ![inc-1](misc/inc-1.png)
@@ -24,6 +67,8 @@
 - Cannot really separate business and database logic e.g. with `declined`
 - The solution should scale well with mongo replicas because we're sending ton of db requests.
 - Also caching could be introduced. E.g. it should be possible to save entire thread tree snapshot at the specific date and then only patch it with the new data.
+- Infinite loop possible when getting comment replies
+- No auht roles for moderation
 
 # Security considerations
 
